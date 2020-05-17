@@ -117,7 +117,44 @@ new_list.insert(2, 'xyz')   # ( куда вставляем, что вставл
 print(new_list)
 
 
-
+print()
+print(' /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ /-/ ')
 
         # Обработка списков (map, filter)
+print(' # Обработка списков (map, filter) ')
 
+# map  поз-ет сразу делать каку-то операц. посл-но над каждым членом
+integer_list = [9, 3, 6, 2, 4,]
+print(integer_list)
+new_integer_list = list(map(str, integer_list))  #!! от map нужно приводить обратно в list ( т.к. map изменяет)
+print(new_integer_list)
+
+print(' * ')
+
+new_integer_list2 = list(map(lambda x: x**2, integer_list))    # в степень
+print(new_integer_list2)
+
+
+print()
+print('\ | \ | \ | \ | \ | \ | \ | \ | \ | \ | \ | \ | ')
+# filter    правда тут еще и лямда
+print('filter  filter  filter  ')
+
+print(integer_list)
+
+new_integer_list = list(filter(lambda x: x<5, integer_list)) # отфиль-ли и оставили все х<5
+print(new_integer_list)
+
+print()
+
+# reduce
+print('  reduce     reduce     reduce     reduce     reduce     reduce     reduce     reduce   ')
+# Обращ-ся ко всем элем-ам списка и возвр-ет один эле-т
+
+from functools import reduce
+
+integer_list = [1, 2, 3, 4,]
+print(integer_list)
+sum = reduce(lambda x,y: x+y, integer_list)
+priduct = reduce(lambda x,y: x*y, integer_list)
+print(sum, priduct)

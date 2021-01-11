@@ -190,7 +190,7 @@ print('    Обращение к значениям методом get() ')
 
 alien_0 = {'color': 'green', 'speed': 'fast'} # color - ключ, green - значение
 point_value = alien_0.get('color', 'Sorry!') #зачем здессорри
-print(point_value)
+print('point_value:', point_value)
 
 alien_0 = {'color': 'green', 'speed': 'fast'} # color - ключ, green - значение
 print(alien_0.get('color'))
@@ -220,7 +220,7 @@ user_0 = {
     'first': 'enrico',
     'last': 'fermi',
     }
-print(user_0)
+print('Юзер_0:', user_0)
 
 # Чтобы просмотреть все данные из словаря
 # можно воспользоваться перебором в цикле for
@@ -277,7 +277,7 @@ for name in favorite_languages.keys(): # использование метода
     print('Выводим все ключи метода key():',name.title())
 
 ''''
-вывода ключа словаря I вар
+вывода ключа словаря II вар
 
 Аналогичный результат.
 Перебор ключей используется по умолчанию при переборе словаря
@@ -312,7 +312,7 @@ favorite_languages = {
 friends = ['phil', 'sarah'] # список друзей, для которых должно выводиться сообщение
 
 for name in favorite_languages.keys(): # цикл проверки имени очередного участника опроса
-    print(f"Hello {name.title()}.")
+    print(f"HelloПРивет {name.title()}.")
 
     if name in friends:   # отдельное сообщение для друзей
         language = favorite_languages[name].title()
@@ -557,6 +557,7 @@ print('    Список в словаре')
 Список в словаре
 
 Удобно в случаях использования в качестве значения словаря списка значений.
+dict{ Ключ:Список[1,2,3], key:list[3,2,1] }
 
 В следующем примере для каждой пиццы сохраняются два вида информации:
  основа и список топпингов. 
@@ -593,7 +594,7 @@ favorite_languages = {              # несколько языков
 for имя, Языки in favorite_languages.items():
     print(f"\n{имя.title()}'любимые языки:")
 
-    for Языки in languages: #перебор всех элеменов списка
+    for Языки in Языки: #перебор всех элеменов списка
         print(f"\t{Языки.title()}")
         ''''
         ПРИМЕЧАНИЕ 
@@ -681,6 +682,108 @@ for username, user_info in users.items():
 Если словари разных пользователей будут содержать разные ключи, 
 то код в цикле for заметно усложнится.
 '''
+
+print('    \n\tИнфо из udemy \n\t Вытащим все ключи из словаря, переведем их в список')
+favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'ruby',
+    'phil': 'python',
+    'artem' : 'python'
+    }
+keys = favorite_languages.keys()
+print('Ключи словаря:\n', keys)
+
+keys_list = list(favorite_languages.keys())
+print('Ключи в списке:\n', keys_list)
+print(type(keys_list))
+
+# или тоже получаем список, но отсортированный по алфавиту
+print('Список по алфавиту при помощи Sorted: ', sorted(favorite_languages.keys()))
+
+# проверим есть ли такой ключ (имя) в словаре функция in и not in
+
+print('artem' in favorite_languages)
+'Есть ли artem в словаре favorite_languages'
+
+print('Если alisa нет в словаре - True:', 'alisa' not in favorite_languages)
+'Отсутствует ли alisa в словаре favorite_languages'
+
+''''
+Что бы также работать со значениями есть функция values
+также можно переворачивать в лист, сортировать по возрастанию
+проверять на присутствие
+'''
+
+# Также можно создать поверхностную копию (внутренняя репрезентация объектов скопирована не будет)
+print('Также можно создать поверхностную копию (внутренняя репрезентация объектов скопирована не будет)')
+favorite_languages_copy = favorite_languages.copy()
+print(favorite_languages_copy)
+
+# Что бы удалить пару по ключу функция pop
+print('до удалениея', favorite_languages)
+favorite_languages.pop('sarah')
+print('после удаления:', favorite_languages)
+
+# Что бы удалить с конца -> popitem()
+print('\nЧто бы удалить с конца')
+print(favorite_languages.popitem())
+'''' Распечали то, что удаляем'''
+
+print('Распечатали словарь после удаления:', favorite_languages)
+
+# подсчитаем количество пар len
+print('\nподсчитаем количество пар len')
+print(len(favorite_languages))
+
+# проверка на присутствие определенного имени
+# и в случае отсутствия автоматически добавляет этот ключ со значением none -> setdefault
+
+
+favorite_languages.setdefault('Бабабакин')
+print(favorite_languages)
+
+
+# Словари. Генераторы словарей
+print('\tГенераторы словарей')
+
+# 1. Сгенерировать словарь на основе заданного выражения
+# Генерируются пары (ключ: значение) = (i: 5*i)
+A = { i: i*5 for i in [10,20,30,40] }
+print('A', A) # {10: 50, 20: 100, 30: 150, 40: 200}
+
+# 2. Сгенерировать словарь по итерируемому объекту (строке)
+print('\tСгенерировать словарь по итерируемому объекту (строке)')
+s = 'Hello'
+B = { sym: sym*3 for sym in s } # пара (sym:sym*3)
+print('B=', B) # {'H': 'HHH', 'e': 'eee', 'l': 'lll', 'o': 'ooo'}
+
+numbers = [ 15, 25, 30 ]
+C = { num: str(num) for num in numbers }
+print('C=', C) # {15: '15', 25: '25', 30: '30'}
+
+
+
+# 3. Инициализация словаря из списка ключей
+print('\tИнициализация словаря из списка ключей')
+# Заполнить список ключей значением, введенным с клавиатуры
+
+value = int(input('Input value: '))
+listKeys = [ 1, 2, 3, 4 ]
+D = { lk:value for lk in listKeys }
+print(D)
+
+# Заполнить список ключей значением None
+value = None
+listKeys = [ 'a', 'b', 'c' ]
+E = { lk:value for lk in listKeys }
+print(E) # {'a': None, 'b': None, 'c': None}
+
+# 4. Сгенерировать словарь с использованием функции zip()
+WMonths = [ 'Dec', 'Jan', 'Feb']
+NumMonths = [ 12, 1, 2 ]
+F = { nm:wm for (nm,wm) in zip(NumMonths,WMonths) }
+print(F) # {12: 'Dec', 1: 'Jan', 2: 'Feb'}
 
 
 
